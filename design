@@ -1,0 +1,133 @@
+import React, { useEffect } from "react";
+import { motion } from "framer-motion";
+
+export default function DesignerPortfolio() {
+  useEffect(() => {
+    const handleScroll = () => {
+      const parallaxElements = document.querySelectorAll("[data-parallax]");
+      parallaxElements.forEach((el) => {
+        const speed = parseFloat(el.getAttribute("data-speed") || "0.3");
+        const yPos = window.scrollY * speed;
+        el.style.transform = `translateY(${yPos}px)`;
+      });
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 text-gray-900" style={{ scrollBehavior: "smooth" }}>
+      {/* Sticky navbar */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white/60 backdrop-blur-sm border-b">
+        <nav className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+          <div className="font-serif text-2xl font-semibold">Lalithya Motori</div>
+          <ul className="flex items-center space-x-6 text-sm">
+            <li>
+              <a href="#portfolio" className="hover:text-yellow-600 transition">
+                Portfolio
+              </a>
+            </li>
+            <li>
+              <a href="#lifestyle" className="hover:text-yellow-600 transition">
+                Lifestyle
+              </a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/lali.morin" target="_blank" rel="noreferrer" className="hover:text-yellow-600 transition">
+                About
+              </a>
+            </li>
+            <li>
+              <a href="#contact" className="hover:text-yellow-600 transition">
+                Contact
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <main className="pt-24">
+        {/* Hero */}
+        <section className="relative h-[88vh] flex items-center justify-center text-center overflow-hidden">
+          <div
+            data-parallax
+            data-speed="0.28"
+            className="absolute inset-0 bg-[url('https://source.unsplash.com/1600x900/?luxury,design')] bg-cover bg-center opacity-20"
+          />
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }} className="relative z-10 max-w-3xl px-6">
+            <h1 className="text-6xl md:text-7xl font-bold tracking-tight mb-4">Lalithya Motori</h1>
+            <p className="text-xl md:text-2xl mb-6">Designer at Strate School of Design • AIR 32 in NID</p>
+            <div className="flex justify-center gap-4">
+              <a href="https://www.instagram.com/lali.morin" target="_blank" rel="noreferrer" className="inline-block px-6 py-3 rounded-full bg-yellow-500 text-black font-semibold shadow-lg hover:scale-105 transition transform">
+                About on Instagram
+              </a>
+              <a href="#portfolio" className="inline-block px-6 py-3 rounded-full border border-gray-300 text-gray-800 hover:bg-gray-100 transition">
+                See Work
+              </a>
+            </div>
+          </motion.div>
+        </section>
+
+        {/* Portfolio with the two uploaded images */}
+        <section id="portfolio" className="py-20 px-6 max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold text-center mb-12">Portfolio</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            <motion.div whileHover={{ scale: 1.03 }} className="rounded-xl overflow-hidden shadow-2xl cursor-pointer bg-white">
+              <img src="/mnt/data/IMG-20250827-WA0011.jpg" alt="Artwork 1" className="w-full h-96 object-cover" />
+              <div className="p-6">
+                <h3 className="font-semibold text-lg">Mixed Media Study</h3>
+                <p className="text-sm text-gray-600 mt-2">A colorful study exploring silhouette, pattern and texture — part of Lalithya's exploration of cultural motifs.</p>
+              </div>
+            </motion.div>
+
+            <motion.div whileHover={{ scale: 1.03 }} className="rounded-xl overflow-hidden shadow-2xl cursor-pointer bg-white">
+              <img src="/mnt/data/IMG-20250822-WA0085.jpg" alt="Artwork 2" className="w-full h-96 object-cover" />
+              <div className="p-6">
+                <h3 className="font-semibold text-lg">Narrative Comic Page</h3>
+                <p className="text-sm text-gray-600 mt-2">Sequential storytelling work emphasizing composition, pacing and character design.</p>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Lifestyle */}
+        <section id="lifestyle" className="py-20 px-6 bg-gradient-to-r from-white to-gray-50">
+          <h2 className="text-4xl font-bold text-center mb-8">Lifestyle</h2>
+          <p className="max-w-3xl mx-auto text-center text-gray-600 mb-10">Lalithya's life blends design, travel and curated experiences — her surroundings inform a luxe aesthetic that's visible in every project.</p>
+          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            <motion.div whileHover={{ scale: 1.04 }} className="relative overflow-hidden rounded-xl">
+              <img src="https://source.unsplash.com/800x600/?paris,fashion" alt="Paris fashion" className="w-full h-64 object-cover" />
+              <div className="absolute inset-0 bg-black/30 opacity-0 hover:opacity-100 transition flex items-center justify-center">
+                <span className="text-white font-semibold">Paris Fashion</span>
+              </div>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.04 }} className="relative overflow-hidden rounded-xl">
+              <img src="https://source.unsplash.com/800x600/?modern,architecture" alt="Architecture" className="w-full h-64 object-cover" />
+              <div className="absolute inset-0 bg-black/30 opacity-0 hover:opacity-100 transition flex items-center justify-center">
+                <span className="text-white font-semibold">Architecture</span>
+              </div>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.04 }} className="relative overflow-hidden rounded-xl">
+              <img src="https://source.unsplash.com/800x600/?yacht,luxury" alt="Yacht" className="w-full h-64 object-cover" />
+              <div className="absolute inset-0 bg-black/30 opacity-0 hover:opacity-100 transition flex items-center justify-center">
+                <span className="text-white font-semibold">Yachts & Travel</span>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Contact */}
+        <section id="contact" className="py-16 px-6 max-w-3xl mx-auto text-center">
+          <h3 className="text-2xl font-semibold mb-4">Contact</h3>
+          <p className="text-gray-600 mb-6">Collaborations and commissions — reach out via Instagram.</p>
+          <a href="https://www.instagram.com/lali.morin" target="_blank" rel="noreferrer" className="inline-block px-6 py-3 rounded-full bg-yellow-500 text-black font-semibold hover:scale-105 transition">Message on Instagram</a>
+        </section>
+      </main>
+
+      <footer className="py-8 text-center text-sm text-gray-500 border-t">
+        <div className="max-w-6xl mx-auto">© 2025 Lalithya Motori — Ranked AIR 32 (NID)</div>
+      </footer>
+    </div>
+  );
+}
